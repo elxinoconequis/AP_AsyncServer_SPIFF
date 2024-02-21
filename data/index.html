@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP32 Web Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1> Universidad Autonoma de Aguascalientes</h1>
+  <img src="uaa-logo.jpg">
+  <h1>Access Point - ESP32 Asynchronous Web Server</h1>
+  <p>GPIO state (for internal LED): <strong> %STATE%</strong></p>
+  <p><a href="/on"><button class="button">ON</button></a></p>
+  <p><a href="/off"><button class="button button2">OFF</button></a></p>
+  <hr>
+  <h2>Ingeniería en Energías Renovables</h2>
+
+  <!-- Buttons -->
+
+  <!-- 23 -->
+  <p>GPIO 23 - State " + output23State + "</p>
+  <p><a href="/23/on"><button class="button\">ON</button></a></p>
+  <p><a href="/23/off"><button class="button button2">OFF</button></a></p>
+
+  <!-- 22 -->
+  <p>GPIO 22 - State " + output22State + "</p>
+  <p><a href="/22/on"><button class="button">ON</button></a></p>
+  <p><a href="/22/off"><button class="button button2">OFF</button></a></p>
+
+  <!-- 21 -->
+  <p>GPIO 21 - State " + output21State + "</p>
+  <p><a href=\"/21/on\"><button class=\"button\">ON</button></a></p>
+  <p><a href=\"/21/off\"><button class=\"button button2\">OFF</button></a></p>
+
+  <!-- 19 -->
+  <p>GPIO 19 - State " + output19State + "</p>
+  <p><a href=\"/19/on\"><button class=\"button\">ON</button></a></p>
+  <p><a href=\"/19/off\"><button class=\"button button2\">OFF</button></a></p>
+
+
+</body>
+</html>
