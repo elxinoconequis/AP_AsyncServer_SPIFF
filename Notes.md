@@ -1,0 +1,1 @@
+[About HTTP Requests](https://randomnerdtutorials.com/esp32-http-get-post-arduino/)
