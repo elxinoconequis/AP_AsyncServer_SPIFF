@@ -78,7 +78,7 @@ void setup(){
   IPAddress IP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(IP);
-  server.begin();
+  //server.begin(); // podría estar al final, quiza. Esta linea viene de cuando hichimos el AP sencillo 
 
   // Initialize SPIFFS
   if(!SPIFFS.begin(true))
@@ -87,40 +87,76 @@ void setup(){
     return; 
   }
 
-  Serial.println("Local IP Adress")
+  Serial.println("Local IP Adress");
   Serial.println(WiFi.localIP());
 
-  // Route for root / web page from 'AsyncWebServer'
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-  });
+  // Route for root / web page from 'AsyncWebServer' *request is pointer
+  server.on("/", // server.on sirve para ver si hacemos un POST, GET U otro
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              // Esta expresión sirve como una función lambda
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
 
   // Note: The member access operators . and -> are used to refer to members of struct, union, and class types.
   // https://www.geeksforgeeks.org/arrow-operator-in-c-c-with-examples/
   
   
   // Route to load style.css file
-  server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/style.css", "text/css");
-  });
+  server.on("/style.css", 
+            HTTP_GET,
+            [](AsyncWebServerRequest *request)
+            {
+              request->send(SPIFFS, "/style.css", "text/css");
+            }
+            );
 
   // Route to set GPIO  (LED 2) to HIGH
-  server.on("/on", HTTP_GET, [](AsyncWebServerRequest *request){
-    digitalWrite(ledPin, HIGH);    
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-  });
+  server.on("/on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(ledPin, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
   
-  // Route to set GPIO to LOW
-  server.on("/off", HTTP_GET, [](AsyncWebServerRequest *request){
-    digitalWrite(ledPin, LOW);    
-    request->send(SPIFFS, "/index.html", String(), false, processor);
-  });
+  // Route to set GPIO (LED 2) to LOW
+  server.on("/off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(ledPin, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
 
-  //TODO: Add toutes for pins 23,22,21,19
+  //TODO: Add functions for pins 23,22,21,19,18,5,17,16
+  // Route to set GPIO  23 to HIGH
+  server.on("/23/on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output23, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+  
+  // Route to set GPIO 23 to LOW
+  server.on("/23/off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output23, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
 
 
   // Start server
-  server.begin();
+  server.begin(); // este debería ser el bueno
 }
  // ---------------------------------------------------------------
 void loop(){
