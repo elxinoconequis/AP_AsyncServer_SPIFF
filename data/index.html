@@ -8,20 +8,25 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1> Universidad Autonoma de Aguascalientes</h1>
-  <img src="uaa-logo.jpg">
+  <h1> Universidad Autónoma de Aguascalientes</h1>
+  <div>
+    <img src="uaa-logo.jpg"style="width:25px;height:25px;">
+  </div>
+  
   <h1>Access Point - ESP32 Asynchronous Web Server</h1>
+  <h2>Ingeniería en Energías Renovables</h2>
+  <hr> 
+  <!-- Interal LED (GPIO 2)-->
   <p>GPIO state (for internal LED): <strong> %STATE%</strong></p>
   <p><a href="/on"><button class="button">ON</button></a></p>
   <p><a href="/off"><button class="button button2">OFF</button></a></p>
-  <h2>Ingeniería en Energías Renovables</h2>
-  <hr>  
+  <hr>
   <!-- Buttons -->
   <!-- FIXME: CHECK HOW STATE VARIABLE IS SENT-->
   <!-- 23 -->
   <p>GPIO 23 - State: <strong>%STATE%</strong></p>
-  <p><a href="/23/on"><button class="button\">ON 23</button></a></p>
-  <p><a href="/23/off"><button class="button button2">OFF 23</button></a></p>
+  <p><a href="/23/on"><button class="button">ON</button></a></p>
+  <p><a href="/23/off"><button class="button button2">OFF</button></a></p>
   <hr>
   <!-- 22 -->
   <p>GPIO 22 - State: <strong>%STATE%</strong></p>
