@@ -4,3 +4,6 @@ pinout-esp32.png
 esp32.svd
 debug_custom.json
 debug.cfg
+esp32s3.svd
+.vscode/arduino.json
+.vscode/c_cpp_properties.json
