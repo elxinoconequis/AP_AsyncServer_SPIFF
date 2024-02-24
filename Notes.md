@@ -14,14 +14,13 @@ Ver código
 
 >When the server receives a request on the root “/” URL, it will send the index.html file to the client. The last argument of the send() function is the processor, so that we are able to replace the placeholder for the value we want – in this case the ledState.
 
-**Explicaciones**
+## Explicaciones
 
 - [https://techtutorialsx.com/2017/12/17/esp32-arduino-http-server-getting-query-parameters/](https://techtutorialsx.com/2017/12/17/esp32-arduino-http-server-getting-query-parameters/)
 
-
 **server.on *method***
 
-```
+```objc
 server.on("/on", 
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
@@ -38,20 +37,26 @@ receives the handling function that will be executed upon
 receiving the request. This function needs to follow a 
 fixed signature, more precisely, it needs to return void
 and receive as input a pointer to an object of class AsyncWebServerRequest.
+- About [fenced block in MD](https://www.w3schools.io/file/markdown-code-fence-blocks/)
 
  **send *method***
- 
+
 send back a response to the client, we just need to call the send 
 method of the AsyncWebServerRequest object that we receive 
 on our handling function.
-```
+```objc
 request->send(SPIFFS, "/index.html", String(), false, processor);
 ```
+
 - This method receives as first input the HTTP return code, 
 which will be 200 (OK) for our example.
 - Second argument, it receives the content-type
 - Third argument we will pass the actual content to be returned to the client.
 
+
+### Definiciones
+
+- [TCP](https://www.hostinger.es/tutoriales/protocolo-tcp): El Protocolo de Control de Transmisión (Transmission Control Protocol en inglés o TCP) es el método de comunicación de datos por defecto entre distintos dispositivos, a través de una red.
 
 ## Pendientes
 
