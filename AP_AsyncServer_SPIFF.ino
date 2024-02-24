@@ -26,6 +26,10 @@ String output23State = "off"; // Yellow
 String output22State = "off"; // Red
 String output21State = "off"; // Green
 String output19State = "off"; // Blue
+String output18State = "off"; // X
+String output5State = "off"; // Y
+String output17State = "off"; // Z
+String output16State = "off"; // something
 
 // Assign output variables to GPIO pins
 const int ledPin = 2; // Set LED GPIO
@@ -33,6 +37,10 @@ const int output23 = 23;
 const int output22 = 22;
 const int output21 = 21;
 const int output19 = 19;
+const int output18 = 18;
+const int output5 = 5;
+const int output17 = 17;
+const int output16 = 16;
 
 
 // Replaces placeholder with LED state value
@@ -235,7 +243,7 @@ server.on("/uaa-logo.jpg",
             }
             );
 
-  // Route to set GPIO 21 to LOW
+  // Route to set GPIO 19 to LOW
   server.on("/19off", 
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
@@ -245,7 +253,46 @@ server.on("/uaa-logo.jpg",
             }
             );
 
-  //TODO: Add functions for pins 18,5,17,16
+  // Route to set GPIO 18 to HIGH
+  server.on("/18on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output18, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  // Route to set GPIO 18 to LOW
+  server.on("/18off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output18, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+  // Route to set GPIO 5 to HIGH
+  server.on("/5on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output5, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  // Route to set GPIO 19 to LOW
+  server.on("/5off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output5, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+
 
   // Start server
   server.begin(); // este debería ser el bueno
