@@ -44,22 +44,43 @@ const int output16 = 16;
 
 
 // Replaces placeholder with LED state value
-// TODO: Add argument to switch GPIO 
-String processor(const String& var)
+String processor(const String& var) // toma lo que esta en el placedolder , es decir %STATE%
 {
+  Serial.print("\n--------------\n");
+  Serial.print("processor()\n");
   Serial.println(var);
-  if( var == "STATE")
+  Serial.print("\n");
+  if( var == "STATE2")
   {
     if(digitalRead(ledPin))
     {
       ledState = "ON";
     }
-    else{
+    else
+    {
       ledState = "OFF";
     }
-    Serial.print(ledState);
-    return ledState;
+      Serial.print("\nledState:\n");
+      Serial.print(ledState);
+      Serial.print("\n");
+      return ledState;
   }
+else if (var == "STATE23")
+    {
+      if (digitalRead(output23))
+      {
+        output23State = "ON";
+      }
+      else
+      {
+        output23State = "OFF";
+      }
+    Serial.print("\noutput23State:\t");
+    Serial.print(output23State);
+    Serial.print("\n");
+    return output23State;
+    }
+    
   return String();
 }
  
@@ -132,12 +153,13 @@ server.on("/uaa-logo.jpg",
 
 
   // Route to set GPIO  (LED 2) to HIGH
-  server.on("/on", 
+  server.on("/2on", 
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
             {
               // Listen on serial monitor
               int paramsNr = request->params();
+                Serial.print("\n...listening parameter");
                 Serial.println(paramsNr);
                 for(int i=0;i<paramsNr;i++)
                 {
@@ -151,11 +173,13 @@ server.on("/uaa-logo.jpg",
                 
               digitalWrite(ledPin, HIGH);    
               request->send(SPIFFS, "/index.html", String(), false, processor);
+              //                                                     processor - is the "AwsTemplateProcessor"
+              // The lambda here is taking a const String &var as parameter such as the AwsTemplateProcessor, and we precise the return type of the AwsTemplateProcessor function by writing -> String after the lambda prototype. By precising the parameters and the return type correctly the send method can relate the lambda to the std::function (AwsTemplateProcessor).
             }
             );
   
   // Route to set GPIO (LED 2) to LOW
-  server.on("/off", // 
+  server.on("/2off", // 
             HTTP_GET, //
             [](AsyncWebServerRequest *request)
             {
@@ -163,6 +187,7 @@ server.on("/uaa-logo.jpg",
               request->send(SPIFFS, "/index.html", String(), false, processor);
             }
             );
+
   // Route to set GPIO  23 to HIGH
   server.on("/23on", 
             HTTP_GET, 
@@ -291,8 +316,6 @@ server.on("/uaa-logo.jpg",
               request->send(SPIFFS, "/index.html", String(), false, processor);
             }
             );
-
-
 
   // Start server
   server.begin(); // este debería ser el bueno
