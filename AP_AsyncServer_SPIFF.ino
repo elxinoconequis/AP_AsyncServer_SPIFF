@@ -110,11 +110,14 @@ void setup(){
   // https://www.geeksforgeeks.org/arrow-operator-in-c-c-with-examples/
 
 // Route to load image
+/* explicación de estas líneas:
+https://techtutorialsx.com/2018/01/01/esp8266-arduino-asynchronous-http-web-server/
+*/
 server.on("/uaa-logo.jpg", 
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
             {
-              // Esta expresión sirve como una función lambda
+              // Esta expresión sirve como una función lambda, 'handling function'
               request->send(SPIFFS, "/uaa-logo.jpg", "image/jpg");
             }
             );
@@ -125,35 +128,56 @@ server.on("/uaa-logo.jpg",
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
             {
+              // Listen on serial monitor
+              int paramsNr = request->params();
+                Serial.println(paramsNr);
+                for(int i=0;i<paramsNr;i++)
+                {
+                    AsyncWebParameter* p = request->getParam(i);
+                    Serial.print("Param name: ");
+                    Serial.println(p->name());
+                    Serial.print("Param value: ");
+                    Serial.println(p->value());
+                    Serial.println("------");
+                }
+                
               digitalWrite(ledPin, HIGH);    
               request->send(SPIFFS, "/index.html", String(), false, processor);
             }
             );
   
   // Route to set GPIO (LED 2) to LOW
-  server.on("/off", 
-            HTTP_GET, 
+  server.on("/off", // 
+            HTTP_GET, //
             [](AsyncWebServerRequest *request)
             {
               digitalWrite(ledPin, LOW);    
               request->send(SPIFFS, "/index.html", String(), false, processor);
             }
             );
-
-  //TODO: Add functions for pins 23,22,21,19,18,5,17,16
   // Route to set GPIO  23 to HIGH
-  // FIXME: 23
-  server.on("/23/on", 
+  server.on("/23on", 
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
             {
+              // listen on Serial monitor
+              int paramsNr = request->params();
+              Serial.println(paramsNr);
+              for(int i=0;i<paramsNr;i++){
+                  AsyncWebParameter* p = request->getParam(i);
+                  Serial.print("Param name: ");
+                  Serial.println(p->name());
+                  Serial.print("Param value: ");
+                  Serial.println(p->value());
+                  Serial.println("------");
+              }
               digitalWrite(output23, HIGH);    
               request->send(SPIFFS, "/index.html", String(), false, processor);
             }
             );
   
   // Route to set GPIO 23 to LOW
-  server.on("/23/off", 
+  server.on("/23off", 
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
             {
@@ -162,171 +186,71 @@ server.on("/uaa-logo.jpg",
             }
             );
 
+  // Route to set GPIO 22 to HIGH
+  server.on("/22on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output22, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  // Route to set GPIO 22 to LOW
+  server.on("/22off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output22, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+  // Route to set GPIO 21 to HIGH
+  server.on("/21on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output21, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  // Route to set GPIO 21 to LOW
+  server.on("/21off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output21, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  // Route to set GPIO 19 to HIGH
+  server.on("/19on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output19, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  // Route to set GPIO 21 to LOW
+  server.on("/19off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output19, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  //TODO: Add functions for pins 18,5,17,16
 
   // Start server
   server.begin(); // este debería ser el bueno
 }
- // ---------------------------------------------------------------
+
 void loop(){
-  /*
-  // This is from the normal Acces point code
-  WiFiClient client = server.available();   // Listen for incoming clients
-
-  if (client) {                             // If a new client connects,
-    Serial.println("New Client.");          // print a message out in the serial port
-    String currentLine = "";                // make a String to hold incoming data from the client
-    while (client.connected()) {            // loop while the client's connected
-      if (client.available()) {             // if there's bytes to read from the client,
-        char c = client.read();             // read a byte, then
-        Serial.write(c);                    // print it out the serial monitor
-        header += c;
-        if (c == '\n') {                    // if the byte is a newline character
-          // if the current line is blank, you got two newline characters in a row.
-          // that's the end of the client HTTP request, so send a response:
-          if (currentLine.length() == 0) {
-            // HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
-            // and a content-type so the client knows what's coming, then a blank line:
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-type:text/html");
-            client.println("Connection: close");
-            client.println();
-            
-            // turns the GPIOs on and off
-            if (header.indexOf("GET /23/on") >= 0) 
-            {
-
-              //(string object method 'indexOf':  
-              // * Locates a character or String within another String. By default, 
-              //searches from the beginning of the String, but can also start from a given index, 
-              //allowing for the locating of all instances of the character or String.
-              
-              Serial.println("GPIO 23 on");
-              output23State = "on";
-              digitalWrite(output23, HIGH);
-
-            } else if (header.indexOf("GET /23/off") >= 0) {
-              Serial.println("GPIO 23 off");
-              output23State = "off";
-              digitalWrite(output23, LOW);
-
-            } else if (header.indexOf("GET /22/on") >= 0) {
-              Serial.println("GPIO 22 on");
-              output22State = "on";
-              digitalWrite(output22, HIGH);
-
-            } else if (header.indexOf("GET /22/off") >= 0) {
-              Serial.println("GPIO 22 off");
-              output22State = "off";
-              digitalWrite(output22, LOW);
-
-            } else if (header.indexOf("GET /21/on") >= 0){
-              Serial.println("GPIO 21 on");
-              output21State = "on";
-              digitalWrite(output21,HIGH);
-
-            } else if (header.indexOf("GET /21/off") >= 0){
-              Serial.println("GPIO 21 off");
-              output21State = "off";
-              digitalWrite(output21, LOW);
-
-            } else if (header.indexOf("GET /19/on") >= 0){
-              Serial.println("GPIO 19 on");
-              output19State = "on";
-              digitalWrite(output19, HIGH);
-
-            } else if (header.indexOf("GET /19/off") >= 0){
-              Serial.println("GPIO 19 off");
-              output19State = "off";
-              digitalWrite(output19, LOW);
-            }
-            
-            // Display the HTML web page
-            client.println("<!DOCTYPE html><html>");
-            client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
-            client.println("<link rel=\"icon\" href=\"data:,\">");
-            // CSS to style the on/off buttons 
-            // Feel free to change the background-color and font-size attributes to fit your preferences
-            client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
-            client.println(".button { background-color: #4CAF50; border: none; color: white; padding: 16px 40px;");
-            client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");
-            client.println(".button2 {background-color: #555555;}</style></head>");
-            
-            // Web Page Heading
-            client.println("<body><h1> Universidad Autonoma de Aguascalientes</h1>");
-            client.println("<h2>ESP32 Web Server</h2>");
-            client.println("<h2> Ingenieria en Energias Renovables</h2>");
-
-            
-            // Display current state, and ON/OFF buttons for GPIO 23  
-              client.println("<p>GPIO 23 - State " + output23State + "</p>");
-              // If the output23State is off, it displays the ON button       
-              if (output23State == "off") 
-              {
-                // ¿ PARA QUE SIRVE EL SIMBOLO '\' en este contexto?
-                client.println("<p><a href=\"/23/on\"><button class=\"button\">ON</button></a></p>");
-              } 
-              else 
-              {
-                client.println("<p><a href=\"/23/off\"><button class=\"button button2\">OFF</button></a></p>");
-              } 
-               
-            // Display current state, and ON/OFF buttons for GPIO 22  
-              client.println("<p>GPIO 22 - State " + output22State + "</p>");
-              // If the output27State is off, it displays the ON button       
-              if (output22State =="off") 
-              {
-                client.println("<p><a href=\"/22/on\"><button class=\"button\">ON</button></a></p>");
-              } 
-              else 
-              {
-                client.println("<p><a href=\"/22/off\"><button class=\"button button2\">OFF</button></a></p>");
-              }
-            
-            // Display current state, and ON/OFF buttons for GPIO 21  
-              client.println("<p>GPIO 21 - State " + output21State + "</p>");
-              // If the output27State is off, it displays the ON button       
-              if (output21State == "off") 
-              {
-                client.println("<p><a href=\"/21/on\"><button class=\"button\">ON</button></a></p>");
-              } 
-              else 
-              {
-                client.println("<p><a href=\"/21/off\"><button class=\"button button2\">OFF</button></a></p>");
-              }
-
-            // Display current state, and ON/OFF buttons for GPIO 19
-              client.println("<p>GPIO 19 - State " + output19State + "</p>");
-              // If the output27State is off, it displays the ON button       
-              if (output19State == "off") 
-              {
-                client.println("<p><a href=\"/19/on\"><button class=\"button\">ON</button></a></p>");
-              } 
-              else 
-              {
-                client.println("<p><a href=\"/19/off\"><button class=\"button button2\">OFF</button></a></p>");
-              }
-            
-            
-            client.println("</body></html>");
-            
-            // The HTTP response ends with another blank line
-            client.println();
-            // Break out of the while loop
-            break;
-          } else { // if you got a newline, then clear currentLine
-            currentLine = "";
-          }
-        } else if (c != '\r') {  // if you got anything else but a carriage return character,
-          currentLine += c;      // add it to the end of the currentLine
-        }
-      }
-    }
-    // Clear the header variable
-    header = "";
-    // Close the connection
-    client.stop();
-    Serial.println("Client disconnected.");
-    Serial.println("");
-  }
-  */
+  
 }
