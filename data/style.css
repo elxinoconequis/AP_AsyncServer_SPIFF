@@ -3,10 +3,12 @@ html {
   display: inline-block;
   margin: 0px auto;
   text-align: center;
+  scroll-behavior: smooth;
 }
 h1{
   color: #0F3376;
   padding: 2vh;
+  font-size:xx-large;
 }
 p{
   font-size: 1.5rem;
@@ -23,6 +25,20 @@ p{
   margin: 2px;
   cursor: pointer;
 }
-.button2 {
+.button2 
+{
   background-color: #f44336;
+}
+
+
+/* Scroll bar */
+.my_scroll_div
+{
+  overflow-y:auto;
+  max-height: 600px;
+  border: 10 px #008CBA;
+  border-radius: 15px;
+  background-color: rgb(182, 180, 180);
+  margin-top: 50px;
+  
 }

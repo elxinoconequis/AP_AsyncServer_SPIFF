@@ -8,69 +8,61 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1> Universidad Autónoma de Aguascalientes</h1>
-  <div>
-    <img src="uaa-logo.jpg"style="width:25px;height:25px;">
-  </div>
-  
+  <h1> Universidad Autónoma de Aguascalientes</h1>  
   <h1>Access Point - ESP32 Asynchronous Web Server</h1>
-  <h2>Ingeniería en Energías Renovables</h2>
+  <h2>Ingeniería en Energías Renovables </h2>
+  
+  <div>
+  <img src="uaa-logo.jpg"style="width:10%;height:10%;">
+  <h2>Casa inteligente</h2>
+  </div>
+
   <hr> 
+  <img src="casa-inteligente.jpg" align="left" hspace="200px" vspace="50px">
   <!-- Interal LED (GPIO 2)-->
-  <p>GPIO state (for internal LED): <strong> %STATE2%</strong></p>
-  <p><a href="/2on"><button class="button">ON</button></a></p>
-  <p><a href="/2off"><button class="button button2">OFF</button></a></p>
-  <hr>
-  <!-- Buttons -->
-  <!-- FIXME: CHECK HOW STATE VARIABLE IS SENT-->
-  <!-- 23 -->
-  <p>GPIO 23 - State: <strong>%STATE23%</strong></p>
-  <p><a href="/23on"><button class="button">ON</button></a></p>
-  <p><a href="/23off"><button class="button button2">OFF</button></a></p>
-  <hr>
-  <!-- 22 -->
-  <p>GPIO 22 - State: <strong>%STATE22%</strong></p>
-  <p><a href="/22on"><button class="button">ON</button></a></p>
-  <p><a href="/22off"><button class="button button2">OFF</button></a></p>
-  <hr>
-  <!-- 21 -->
-  <p>GPIO 21 - State: <strong>%STATE%</strong>"</p>
-  <p><a href="/21on"><button class="button">ON</button></a></p>
-  <p><a href="/21off"><button class="button button2">OFF</button></a></p>
-  <hr>
-  <!-- 19 -->
-  <p>GPIO 19 - State : <strong>%STATE%</strong></p>
-  <p><a href="/19on"><button class="button">ON</button></a></p>
-  <p><a href="/19off"><button class="button button2">OFF</button></a></p>
-  <hr>
+  <div class="my_scroll_div">
+    <p>GPIO 2 - State: <strong> %STATE2%</strong></p>
+    <div style="display: inline-block"><p><a href="/2on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/2off"><button class="button button2">OFF</button></a></p></div>
+  
+    <p>GPIO 23 - State: <strong>%STATE23%</strong></p>
+    <div style="display: inline-block"><p><a href="/23on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/23off"><button class="button button2">OFF</button></a></p></div>
+  
+    <p>GPIO 22 - State: <strong>%STATE22%</strong></p>
+    <div style="display: inline-block"><p><a href="/22on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/22off"><button class="button button2">OFF</button></a></p></div>
 
-  <!-- 18 -->
-  <p>GPIO 18 - State : <strong>%STATE%</strong></p>
-  <p><a href="/18on"><button class="button">ON</button></a></p>
-  <p><a href="/18off"><button class="button button2">OFF</button></a></p>
-  <hr>
+    <p>GPIO 21 - State: <strong>%STATE21%</strong>"</p>
+    <div style="display: inline-block"><p><a href="/21on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/21off"><button class="button button2">OFF</button></a></p></div>
+    
+    <p>GPIO 19 - State : <strong>%STATE19%</strong></p>
+    <div style="display: inline-block"><p><a href="/19on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/19off"><button class="button button2">OFF</button></a></p></div>
+    
+    <p>GPIO 18 - State : <strong>%STATE18%</strong></p>
+    <div style="display: inline-block"><p><a href="/18on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/18off"><button class="button button2">OFF</button></a></p></div>
+  
+    <p>GPIO 5 - State : <strong>%STATE5%</strong></p>
+    <div style="display: inline-block"><p><a href="/5on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/5off"><button class="button button2">OFF</button></a></p></div>
+  
+    <p>GPIO 17 - State : <strong>%STATE17%</strong></p>
+    <div style="display: inline-block"><p><a href="/17on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/17off"><button class="button button2">OFF</button></a></p></div>
+    
 
-  <!-- 5 -->
-  <p>GPIO 5 - State : <strong>%STATE%</strong></p>
-  <p><a href="/5on"><button class="button">ON</button></a></p>
-  <p><a href="/5off"><button class="button button2">OFF</button></a></p>
-  <hr>
-
-  <!-- 17 -->
-  <p>GPIO 17 - State : <strong>%STATE%</strong></p>
-  <p><a href="/17on"><button class="button">ON</button></a></p>
-  <p><a href="/17off"><button class="button button2">OFF</button></a></p>
-  <hr>
-
-  <!-- 16 -->
-  <p>GPIO 16 - State : <strong>%STATE%</strong></p>
-  <p><a href="/16on"><button class="button">ON</button></a></p>
-  <p><a href="/16off"><button class="button button2">OFF</button></a></p>
-  <hr>
-
-
-
-
-
+    <p>GPIO 16 - State : <strong>%STATE16%</strong></p>
+    <div style="display: inline-block"><p><a href="/16on"><button class="button">ON</button></a></p></div>
+    <div style="display: inline-block"><p><a href="/16off"><button class="button button2">OFF</button></a></p></div>
+  
+  </div>  <!-- Scroll bar -->
+<div align="center">
+  <p>
+  Consulta la documentación completa de este proyecto <a href="https://github.com/elxinoconequis/AP_AsyncServer_SPIFF">aquí.</a>
+</p>
+</div>
 </body>
 </html>
