@@ -54,11 +54,32 @@ which will be 200 (OK) for our example.
 - Third argument we will pass the actual content to be returned to the client.
 
 
+**¿Qué pedo con String processor(const String& var, int pin, String& pinState)?**
+[Respuesta](https://stackoverflow.com/questions/1943276/what-does-do-in-a-c-declaration)
+The "&" denotes a reference instead of a pointer to an object (In your case a constant reference). 
+
+[REspuesta 2](https://stackoverflow.com/questions/59575326/passing-a-function-as-a-parameter-within-a-class)
+
+[Respuesta 3](https://community.platformio.org/t/how-data-is-passed-in-the-send-methods-of-espasyncwebserver-when-a-query-is-made/31113/2)
+the last argument is indeed a function reference / pointer to a “processor”; taking in a constant String reference and returning a String.
+
+**What is a class method?**
+
+Pendiente
+
+
+
+
+In C++,
+
+    A::B means B is an identifier within either namespace or class type A, 
+
 ### Definiciones
 
 - [TCP](https://www.hostinger.es/tutoriales/protocolo-tcp): El Protocolo de Control de Transmisión (Transmission Control Protocol en inglés o TCP) es el método de comunicación de datos por defecto entre distintos dispositivos, a través de una red.
 
 ## Pendientes
 
-- [ ] Reparar lo que ocurre al presiona el GPIO 23
+- [X] Reparar lo que ocurre al presiona el GPIO 23
 - [ ] Agregar estilo y clases en *css*  para las imagenes
+- [ ] Fix placeholder for each output
