@@ -262,26 +262,20 @@ server.on("/uaa-logo.jpg",
               request->send(SPIFFS, "/uaa-logo.jpg", "image/jpg");
             }
             );
-
+server.on("/casa-inteligente.jpg", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              // Esta expresión sirve como una función lambda, 'handling function'
+              request->send(SPIFFS, "/casa-inteligente.jpg", "image/jpg");
+            }
+            );
 
   // Route to set GPIO  (LED 2) to HIGH
   server.on("/2on", 
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
             {
-              // Listen on serial monitor
-              int paramsNr = request->params();
-                Serial.print("\n...listening parameter");
-                Serial.println(paramsNr);
-                for(int i=0;i<paramsNr;i++)
-                {
-                    AsyncWebParameter* p = request->getParam(i);
-                    Serial.print("Param name: ");
-                    Serial.println(p->name());
-                    Serial.print("Param value: ");
-                    Serial.println(p->value());
-                    Serial.println("------");
-                }
                 
               digitalWrite(ledPin, HIGH);    
               request->send(SPIFFS, "/index.html", String(), false, processor);
