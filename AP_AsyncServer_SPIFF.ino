@@ -66,7 +66,7 @@ String processor(const String& var) // toma lo que esta en el placedolder , es d
       return ledState;
   }
 else if (var == "STATE23")
-    {
+{
       if (digitalRead(output23))
       {
         output23State = "ON";
@@ -79,8 +79,114 @@ else if (var == "STATE23")
     Serial.print(output23State);
     Serial.print("\n");
     return output23State;
-    }
-    
+}
+else if (var == "STATE22")
+{
+  if (digitalRead(output22))
+  {
+    output22State = "ON";
+  }
+  else
+  {
+    output22State = "OFF";
+  }
+  Serial.print("\noutput22State:\t");
+  Serial.print(output22State);
+  Serial.print("\n");
+  return output22State;
+}
+
+else if (var == "STATE21")
+{
+  if (digitalRead(output21))
+  {
+    output21State = "ON";
+  }
+  else
+  {
+    output21State = "OFF";
+  }
+  Serial.print("\noutput21State:\t");
+  Serial.print(output21State);
+  Serial.print("\n");
+  return output21State;
+}
+else if (var == "STATE19")
+{
+  if (digitalRead(output19))
+  {
+    output19State = "ON";
+  }
+  else
+  {
+    output19State = "OFF";
+  }
+  Serial.print("\noutput19State:\t");
+  Serial.print(output19State);
+  Serial.print("\n");
+  return output19State;
+}
+else if (var == "STATE18")
+{
+  if (digitalRead(output18))
+  {
+    output18State = "ON";
+  }
+  else
+  {
+    output18State = "OFF";
+  }
+  Serial.print("\noutput18State:\t");
+  Serial.print(output18State);
+  Serial.print("\n");
+  return output18State;
+}
+else if (var == "STATE5")
+{
+  if (digitalRead(output5))
+  {
+    output5State = "ON";
+  }
+  else
+  {
+    output5State = "OFF";
+  }
+  Serial.print("\noutput5State:\t");
+  Serial.print(output5State);
+  Serial.print("\n");
+  return output5State;
+}
+else if (var == "STATE17")
+{
+  if (digitalRead(output17))
+  {
+    output17State = "ON";
+  }
+  else
+  {
+    output17State = "OFF";
+  }
+  Serial.print("\noutput17State:\t");
+  Serial.print(output17State);
+  Serial.print("\n");
+  return output17State;
+}
+else if (var == "STATE16")
+{
+  if (digitalRead(output16))
+  {
+    output16State = "ON";
+  }
+  else
+  {
+    output16State = "OFF";
+  }
+  Serial.print("\noutput16State:\t");
+  Serial.print(output16State);
+  Serial.print("\n");
+  return output16State;
+}
+
   return String();
 }
  
@@ -92,14 +198,23 @@ void setup(){
   pinMode(output22, OUTPUT);
   pinMode(output21, OUTPUT);
   pinMode(output19, OUTPUT);
+  pinMode(output18,OUTPUT);
+  pinMode(output5, OUTPUT);
+  pinMode(output17, OUTPUT);
+  pinMode(output16, OUTPUT);
+
   // Set outputs to LOW
   digitalWrite(output23, LOW);
   digitalWrite(output22, LOW);
   digitalWrite(output21, LOW);
   digitalWrite(output19, LOW);
+  digitalWrite(output18, LOW);
+  digitalWrite(output5, LOW);
+  digitalWrite(output17, LOW);
+  digitalWrite(output16, LOW);
   
   // Connect to Wi-Fi network with SSID and password
-  Serial.print("...Setting AP (Access Point)…");
+  Serial.print("...Setting AP (Access Point)...");
   // Remove the password parameter, if you want the AP (Access Point) to be open
   WiFi.softAP(ssid, password);
   IPAddress IP = WiFi.softAPIP();
@@ -112,9 +227,6 @@ void setup(){
     Serial.println("An Error has occurred while mounting SPIFFS");
     return; 
   }
-
-  Serial.println("SPIFFS");
-  
 
   // Route to load style.css file
   server.on("/style.css", 
@@ -307,7 +419,7 @@ server.on("/uaa-logo.jpg",
             }
             );
 
-  // Route to set GPIO 19 to LOW
+  // Route to set GPIO 5 to LOW
   server.on("/5off", 
             HTTP_GET, 
             [](AsyncWebServerRequest *request)
@@ -317,10 +429,47 @@ server.on("/uaa-logo.jpg",
             }
             );
 
+// Route to set GPIO 17 to HIGH
+  server.on("/17on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output17, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  // Route to set GPIO 17 to LOW
+  server.on("/17off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output17, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+// Route to set GPIO 16 to HIGH
+  server.on("/16on", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output16, HIGH);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
+  // Route to set GPIO 16 to LOW
+  server.on("/16off", 
+            HTTP_GET, 
+            [](AsyncWebServerRequest *request)
+            {
+              digitalWrite(output16, LOW);    
+              request->send(SPIFFS, "/index.html", String(), false, processor);
+            }
+            );
+
   // Start server
   server.begin(); // este debería ser el bueno
 }
 
-void loop(){
-  
-}
+void loop(){}
