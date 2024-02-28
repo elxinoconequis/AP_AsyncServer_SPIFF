@@ -47,9 +47,8 @@ const int output16 = 16;
 String processor(const String& var) // toma lo que esta en el placedolder , es decir %STATE%
 {
   Serial.print("\n--------------\n");
-  Serial.print("processor()\n");
+  Serial.print("processor():  ");
   Serial.println(var);
-  Serial.print("\n");
   if( var == "STATE2")
   {
     if(digitalRead(ledPin))
@@ -62,7 +61,6 @@ String processor(const String& var) // toma lo que esta en el placedolder , es d
     }
       Serial.print("\nledState:\n");
       Serial.print(ledState);
-      Serial.print("\n");
       return ledState;
   }
 else if (var == "STATE23")
@@ -75,9 +73,8 @@ else if (var == "STATE23")
       {
         output23State = "OFF";
       }
-    Serial.print("\noutput23State:\t");
+    Serial.print("\nCOCINA:\t");
     Serial.print(output23State);
-    Serial.print("\n");
     return output23State;
 }
 else if (var == "STATE22")
@@ -90,9 +87,8 @@ else if (var == "STATE22")
   {
     output22State = "OFF";
   }
-  Serial.print("\noutput22State:\t");
+  Serial.print("\nCOMEDOR A:\t");
   Serial.print(output22State);
-  Serial.print("\n");
   return output22State;
 }
 
@@ -106,9 +102,8 @@ else if (var == "STATE21")
   {
     output21State = "OFF";
   }
-  Serial.print("\noutput21State:\t");
+  Serial.print("\nCOMEDOR B:\t");
   Serial.print(output21State);
-  Serial.print("\n");
   return output21State;
 }
 else if (var == "STATE19")
@@ -121,9 +116,8 @@ else if (var == "STATE19")
   {
     output19State = "OFF";
   }
-  Serial.print("\noutput19State:\t");
+  Serial.print("\nBAÑOtate:\t");
   Serial.print(output19State);
-  Serial.print("\n");
   return output19State;
 }
 else if (var == "STATE18")
@@ -136,9 +130,8 @@ else if (var == "STATE18")
   {
     output18State = "OFF";
   }
-  Serial.print("\noutput18State:\t");
+  Serial.print("\nRECAMARA:\t");
   Serial.print(output18State);
-  Serial.print("\n");
   return output18State;
 }
 else if (var == "STATE5")
@@ -151,9 +144,8 @@ else if (var == "STATE5")
   {
     output5State = "OFF";
   }
-  Serial.print("\noutput5State:\t");
+  Serial.print("\nENTRADA A:\t");
   Serial.print(output5State);
-  Serial.print("\n");
   return output5State;
 }
 else if (var == "STATE17")
@@ -166,9 +158,8 @@ else if (var == "STATE17")
   {
     output17State = "OFF";
   }
-  Serial.print("\noutput17State:\t");
+  Serial.print("\nENTRADA B:\t");
   Serial.print(output17State);
-  Serial.print("\n");
   return output17State;
 }
 else if (var == "STATE16")
@@ -183,7 +174,6 @@ else if (var == "STATE16")
   }
   Serial.print("\noutput16State:\t");
   Serial.print(output16State);
-  Serial.print("\n");
   return output16State;
 }
 

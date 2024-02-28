@@ -39,6 +39,23 @@ p{
   border: 10 px #008CBA;
   border-radius: 15px;
   background-color: rgb(182, 180, 180);
-  margin-top: 50px;
+  
   
 }
+
+div.relative {
+  position: relative;
+  left: 30px;
+  /* border: 3px solid #73AD21; */
+}
+div.absolute1{
+  position:absolute;
+  top:250px;
+  /* bottom:auto;*/
+}
+div.absolute2{
+  position:absolute;
+  top:500x;
+  /* bottom:auto;*/
+}
+  
