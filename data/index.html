@@ -11,55 +11,80 @@
   <h1> Universidad Autónoma de Aguascalientes</h1>  
   <h1>Access Point - ESP32 Asynchronous Web Server</h1>
   <h2>Ingeniería en Energías Renovables </h2>
-  <h2>Casa inteligente</h2>
-  <img src="uaa-logo.jpg"style="width:10%;height:10%;"> 
-  <hr> 
-  <img src="casa-inteligente.jpg" align="left" hspace="200px" vspace="50px">
+  
+  <h2>Casa inteligente </h2>
+  <img src="uaa-logo.jpg"style="width:20%;height:20%;"> 
+  
+  <img src="LOGO_UAA_Gallos_movHNormal.jpg"style="width:20%;height:20%;"> 
+  <div>
+    <hr> 
+  <img src="CASA-INTELIGENET_16.jpg" align="left" hspace="20px" vspace="50px"style="width:45%;height:45%;" alt="CASA-INTELIGENET_16.jpg">
+  </div>
   <!-- Interal LED (GPIO 2)-->
-  <div class="my_scroll_div">
-    
-    <p>GPIO 2 - State: <strong> %STATE2%</strong></p>
-    <div style="display: inline-block"><p><a href="/2on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/2off"><button class="button button2">OFF</button></a></p></div>
-  
-    <p>GPIO 23 - State: <strong>%STATE23%</strong></p>
-    <div style="display: inline-block"><p><a href="/23on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/23off"><button class="button button2">OFF</button></a></p></div>
-  
-    <p>GPIO 22 - State: <strong>%STATE22%</strong></p>
-    <div style="display: inline-block"><p><a href="/22on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/22off"><button class="button button2">OFF</button></a></p></div>
+  <div>
+    <img src="ING_ENERGIAS_RENOVABLES.jpg" align="left" hspace="20px" vspace="50px"style="width:45%;height:45%;">
+    </div>
 
-    <p>GPIO 21 - State: <strong>%STATE21%</strong>"</p>
-    <div style="display: inline-block"><p><a href="/21on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/21off"><button class="button button2">OFF</button></a></p></div>
+<div>
+  <div>
+    <div class="my_scroll_div">
+      
+      <p> LED PRUEBA  : <strong> %STATE2%</strong></p>
+      <div style="display: inline-block"><p><a href="/2on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/2off"><button class="button button2">OFF</button></a></p></div>
     
-    <p>GPIO 19 - State : <strong>%STATE19%</strong></p>
-    <div style="display: inline-block"><p><a href="/19on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/19off"><button class="button button2">OFF</button></a></p></div>
+      <p>COCINA  : <strong>%STATE23%</strong></p>
+      <div style="display: inline-block"><p><a href="/23on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/23off"><button class="button button2">OFF</button></a></p></div>
     
-    <p>GPIO 18 - State : <strong>%STATE18%</strong></p>
-    <div style="display: inline-block"><p><a href="/18on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/18off"><button class="button button2">OFF</button></a></p></div>
+      <p>COMEDOR A: <strong>%STATE22%</strong></p>
+      <div style="display: inline-block"><p><a href="/22on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/22off"><button class="button button2">OFF</button></a></p></div>
   
-    <p>GPIO 5 - State : <strong>%STATE5%</strong></p>
-    <div style="display: inline-block"><p><a href="/5on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/5off"><button class="button button2">OFF</button></a></p></div>
-  
-    <p>GPIO 17 - State : <strong>%STATE17%</strong></p>
-    <div style="display: inline-block"><p><a href="/17on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/17off"><button class="button button2">OFF</button></a></p></div>
+      <p>COMEDOR B: <strong>%STATE21%</strong>"</p>
+      <div style="display: inline-block"><p><a href="/21on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/21off"><button class="button button2">OFF</button></a></p></div>
+      
+      <p>BAÑO   : <strong>%STATE19%</strong></p>
+      <div style="display: inline-block"><p><a href="/19on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/19off"><button class="button button2">OFF</button></a></p></div>
+      
+      <p>RECÁMARA  : <strong>%STATE18%</strong></p>
+      <div style="display: inline-block"><p><a href="/18on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/18off"><button class="button button2">OFF</button></a></p></div>
     
-
-    <p>GPIO 16 - State : <strong>%STATE16%</strong></p>
-    <div style="display: inline-block"><p><a href="/16on"><button class="button">ON</button></a></p></div>
-    <div style="display: inline-block"><p><a href="/16off"><button class="button button2">OFF</button></a></p></div>
+      <p>ENTRADA A : <strong>%STATE5%</strong></p>
+      <div style="display: inline-block"><p><a href="/5on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/5off"><button class="button button2">OFF</button></a></p></div>
+    
+      <p>ENTRADA B: <strong>%STATE17%</strong></p>
+      <div style="display: inline-block"><p><a href="/17on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/17off"><button class="button button2">OFF</button></a></p></div>
+      
   
-  </div>  <!-- Scroll bar -->
-<div align="center">
-  <p>
-  Consulta la documentación completa de este proyecto <a href="https://github.com/elxinoconequis/AP_AsyncServer_SPIFF">aquí.</a>
-</p>
+      <p>GPIO 16 - State : <strong>%STATE16%</strong></p>
+      <div style="display: inline-block"><p><a href="/16on"><button class="button">ON</button></a></p></div>
+      <div style="display: inline-block"><p><a href="/16off"><button class="button button2">OFF</button></a></p></div>
+    
+    </div>  <!-- Scroll bar -->
+  <div align="center">
+    </div>
+    
+    <p>
+    Consulta la documentación completa de este proyecto <a href="https://github.com/elxinoconequis/AP_AsyncServer_SPIFF">aquí.</a>
+  
+  </p>
+  </div>
+  
 </div>
+<p>
+  Suerte chavos elijan con sabiduria su carrera
+
+<!--
+<p>
+  Agradecimientos al profesor Joaquin Fernando Ortega por sus acesorias y su gran apoyo!!
+</p>
+-->
+</p>
 </body>
 </html>
